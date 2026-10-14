@@ -1,0 +1,54 @@
+# AnisoTrans v2 (R6 per-cell protocol). Values copied from AnisoTrans-CCS/configs/v2.yaml.
+# Only the executed objective is reproduced: MSE + physics anchor. lambda_smooth is not applied
+# by the training step of the source run and is therefore omitted.
+
+seed: 42
+
+data:
+  cache_file: cache_densify_r6.npz
+  cache_sha256: 3de1d736340e3709ab17a3c14be18121ecdaf5c3325cb72d78d6e1793a148ad7
+  kfield_file: Kfield_gridordered.npy
+  kfield_sha256: 837f1fe05f1eba869ee769937c4db2f5d580a7d44c5cf9d5a6e8147483fd5573
+  grid_coords_file: grid_coords_r6.npy
+  grid_coords_sha256: 9b33cf3a92ec000bdaedb48d50ea56f01a667b3cb9a6950258c91352197473c8
+  ystd_fit: 107.00476868676027
+  theta_mean: [1.2076308891527152, 0.9976583639981135, 1.2536885867373915, 1.1493781217787604, 9.241275535454298, 1.1768593823480107, 0.32417480891255807, 1.1171779429206814]
+  theta_std: [0.4867846426812249, 0.05440659686333351, 0.47363216200562847, 0.2076744023292539, 5.514003669624298, 0.4389870138740137, 0.14530739171765858, 0.8697914636898288]
+  K_mean: [364.8743286961985, 364.8743286961985, 104.07515760787138]
+  K_std: [460.1693225134596, 460.1693225134596, 204.31823605443893]
+  n_configs: 378
+  n_cells: 13334
+  n_fit: 263
+  n_val: 40
+  n_test: 75
+
+model:
+  dim: 256
+  n_heads: 8
+  n_layers: 8
+  ffn_mult: 4
+  knn_k: 16
+  n_fourier: 16
+  alpha_max: 1.0
+  alpha_init: 0.1
+  dropout: 0.1
+  scaler:
+    exp_clip: [-3.0, 3.0]
+    physics_init: {a1: 0.1, a2: 0.1, a3: 0.1, a4: 0.1, b0: 0.0, c1: 0.1, c0: 0.0}
+
+training:
+  lr: 3.0e-4
+  weight_decay: 1.0e-2
+  lr_min: 1.0e-5
+  warmup_epochs: 10
+  max_epochs: 150
+  patience: 20
+  accum: 8
+  grad_clip: 5.0
+  precision: fp16
+
+loss:
+  lambda_anchor: 0.05
+
+hardware:
+  device: cuda:1

@@ -1,0 +1,25 @@
+# Python and tooling
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+
+# Data and generated outputs (inputs are supplied via ANISOTRANS_DATA_DIR)
+artifacts/
+data/
+*.npz
+*.npy
+*.pt
+*.pth
+*.log
+*.jsonl
+
+# Local settings
+.env
+.vscode/
+.idea/
+.DS_Store
