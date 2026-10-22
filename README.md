@@ -7,6 +7,17 @@ Self-contained PyTorch port of the AnisoTrans v2 model and its training/evaluati
 - Included: model (`src/anisotrans_ccs/model.py`), data loading and normalisation (`data.py`), executed objective (`objective.py`), training and evaluation (`train.py`), config (`configs/v2.yaml`), tests.
 - Not included: model checkpoints, dataset files, `v2_small`, `v2b`, and other ablations.
 
+## Layout
+
+```
+configs/v2.yaml                  run configuration
+src/anisotrans_ccs/model.py      network
+src/anisotrans_ccs/data.py       loading, hash check, normalisation, split
+src/anisotrans_ccs/objective.py  training loss
+src/anisotrans_ccs/train.py      CLI: train and --eval-only
+tests/                           unit tests (pytest)
+```
+
 ## Data
 
 Set `ANISOTRANS_DATA_DIR` (or pass `--data-dir`) to a directory containing:
